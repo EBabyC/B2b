@@ -1,0 +1,152 @@
+VM
+
+Logiciel qui permet d exec plusieurs systemes d exploitation sur 1 seule machine physique:
+		- hyperviseur qui permet de separer les ressources de la machine et creer la VM. Il traite les ressources tels que le processeur, la memoire le stockage.
+		- VM permet d executer simultanement plusieurs systemes d exploitation (linux, MAcOs, Windows...)
+		- Chaque VM fonctionne independemment
+		
+Choix Operating system: DEBIAN
+		- Conseille pour debutant
+		- Stable, large commu, logiciel libre & open source
+		- Facile d installer et de configurer
+		
+DEBIAN vs ROCKY
+		- easier to update
+		- more usier friendly
+		- plus d option de customiation
+Mais ROCKY:
+		- aussi en opensource et gratos
+		- commu en croissance
+		- compatible Red Hat Enterprise Linux
+		- prends du temps a updater
+
+BUT VM:
+		- optimisation des ressources
+		- VM independante donc pas de pbs pr tester des apllications dans un environnement safe et securise.
+		
+APT (advanced packaging tool) vs APTITUDE:
+		- fonctionnalites basiques equivalentes mais
+			- APT fait uniquement ce qu on lui demande en ligne de commande
+			- APTITUDE a une interphace graphique et est plus high level manager (desisintalle package non utilise ou suggerer l installation de nouveau package)
+			
+APPArmor: Systeme de securite Linux Mandatory Access Control (MAC). Permet a l admin systeme de restreindre les actions qui peuvent etre faites. Inclu ds Debian par defaut.
+			
+
+Pr checker si environnement graphique: ls /usr/bin/*session/ si seulement dbus-run-session cest OK
+
+
+PSW rules: sudo chage -l elichan
+ 1 maj, 1 minus, 1 chiffre, pass 3 identiques consecutifs et +/= 10
+
+
+Check UFW (uncomplicated firewall) sudo ufw status
+interface qui modifie le firewall sans compromettre la securite. pour confirgurer quel port peut se connecter ou fermer.
+
+Check SSH service sudo systemctl status ssh
+
+Check operating system
+cat /etc/os-release | grep PRETTY_NAME 
+
+
+USER
+	getent group sudo
+	getent group user42
+> Psw policy check by creating a new user, assign psw with rules
+	sudo adduser evaluator
+	getent group users
+	sudo nano /etc/pam.d/common-password
+	sudo nano /etc/login.defs
+		
+GROUP
+	create group sudo groupadd evaluating
+	assign user to group sudo adduser evaluator evaluating
+	check if done getent group evaluating
+	
+	
+	
+Script?
+	programme qui se charge d executer une action pre definie quand un utilisateur realise une action. Suite de commandes simple qui permettent l automatisation de certaines taches successives.
+	cd /usr/local/bin 
+	ls
+	sudo nano monitoring.sh
+	pour voir le set up du script: sudo crontab -e
+		
+	
+Cron?
+	Commande qui execute un script a un moment choisit
+	cd /usr/local/bin
+
+Check hostname with 42 hostnamectl
+Modify with other sudo hostnamectl set-hostname login
+
+Partitions	lsblk
+
+LVM 
+	Logical Volume Manager – allows us to easily manipulate the partitions or logical volume on a storage device. En informatique, une partition, région ou un disque est une section d'un support de stockage (disque dur, SSD, carte-mémoire...). Le partitionnement est l'opération qui consiste à diviser ce support en partitions dans lesquelles le système d'exploitation peut gérer les informations de manière séparée, généralement en y créant un système de fichiers, une manière d’organiser l’espace disponible.Le partitionnement propose également d’autres avantages que la rapidité d’accès aux données. Imaginons un disque non-partitionné, celui-ci est considéré par le système d’exploitation comme une seule et unique unité. La sécurité est un aspect capital de la gestion des systèmes d’informations, beaucoup de serveurs utilisent l’OS Linux et le partitionnement peut aider à les sécuriser. 
+	
+Check sudo
+dpkg -l | grep sudo
+
+Assign new user
+sudo adduser new_user sudo
+
+Sudo stands for SuperUser DO and is used to access restricted files and operations. By default, Linux restricts access to certain parts of the system preventing sensitive files from being compromised.
+The sudo command temporarily elevates privileges allowing users to complete sensitive tasks without logging in as the root user.
+sudo + command
+
+To show the rules sudo visudo and configure it
+
+VERIFIER folder /var/log/sudo/  > shoudl have the seq file
+sudo ls /var/log/sudo/
+
+Check content 
+sudo ls /var/log/sudo/
+
+Check history of commands
+cat sudo_config
+
+Faire une command sudo date et revenir pour voir ds sudo_config si bien pris en compte
+
+
+UFW
+
+Check UFW is well installed
+sudo ufw status numbered ou sans numbered
+
+UFW is a interface to modify the firewall of the device without compromising security. You use it to configure which ports to allow connections to and which ports to close. This is useful in conjunction with SSH, can set a specific port for it to work with.
+
+check rule for port 4242 sudo ufw status | grep 4242
+
+Port 8080 sudo ufw allow 8080
+sudo ufw status numbered
+sudo ufw delete #
+
+
+SSH 
+serveur cripte de comm basique en shell (secure shell) Pas possible de se connecter en root
+sudo service ssh status + sudo nano /etc/ssh/ssh_config
+connection avec login etudiant cree sur terminal
+ssh login@127.0.0.1 -p 4241
+NO root connection ssh root@127.0.0.1 -p 4241
+
+check service works sudo service ssh status ssh elichan@127.0.0.1 -p 4241
+
+Script Monitoring
+cd /usr/local/bin et apres nano monitoring.sh
+
+C’est la possibilité d’avoir, en un coup d’œil via une interface, la vision de l’état de votre infrastructure et de pouvoir recevoir des alertes en fonction des problèmes.
+
+
+CRON
+Cron or cron job is a command line utility to schedule commands or scripts to happen at specific intervals or a specific time each day. Useful if you want to set your server to restart at a specific time each day.
+
+sudo crontab -u root -e 
+changer le 10 en 1
+enlever la ligne pour arreter le script
+
+
+.vdi
+
+
+	
+	
