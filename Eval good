@@ -12,7 +12,7 @@ Choix Operating system: DEBIAN
 		
 DEBIAN vs ROCKY
 		- easier to update
-		- more usier friendly
+		- more user friendly
 		- plus d option de customiation
 Mais ROCKY:
 		- aussi en opensource et gratos
@@ -32,7 +32,7 @@ APT (advanced packaging tool) vs APTITUDE:
 APPArmor: Systeme de securite Linux Mandatory Access Control (MAC). Permet a l admin systeme de restreindre les actions qui peuvent etre faites. Inclu ds Debian par defaut.
 			
 
-Pr checker si environnement graphique: ls /usr/bin/*session/ si seulement dbus-run-session cest OK
+Pr checker si environnement graphique: ls /usr/bin/*session si seulement dbus-run-session cest OK
 
 
 PSW rules: sudo chage -l elichan
@@ -40,9 +40,10 @@ PSW rules: sudo chage -l elichan
 
 
 Check UFW (uncomplicated firewall) sudo ufw status
-interface qui modifie le firewall sans compromettre la securite. pour confirgurer quel port peut se connecter ou fermer.
+interface qui modifie le firewall sans compromettre la securite. pour configurer quel port peut se connecter ou fermer.
 
 Check SSH service sudo systemctl status ssh
+identifiant d acces pour le protocole de reseau, necessaire pour la communication a distance entre des machines
 
 Check operating system
 cat /etc/os-release | grep PRETTY_NAME 
@@ -61,7 +62,6 @@ GROUP
 	create group sudo groupadd evaluating
 	assign user to group sudo adduser evaluator evaluating
 	check if done getent group evaluating
-	
 	
 	
 Script?
@@ -128,6 +128,7 @@ sudo service ssh status + sudo nano /etc/ssh/ssh_config
 connection avec login etudiant cree sur terminal
 ssh login@127.0.0.1 -p 4241
 NO root connection ssh root@127.0.0.1 -p 4241
+127.0.0.1 is the local IP of the current machine
 
 check service works sudo service ssh status ssh elichan@127.0.0.1 -p 4241
 
@@ -144,6 +145,15 @@ sudo crontab -u root -e
 changer le 10 en 1
 enlever la ligne pour arreter le script
 
+
+Brief explanation of how LVM works
+
+It works by chunking the physical volumes (PVs) into physical extents (PEs). The PEs are mapped onto logical extents (LEs) which are then pooled into volume groups (VGs). These groups are linked together into logical volumes (LVs) that act as virtual disk partitions and that can be managed as such by using LVM.
+
+Read more
+What is LVM about
+
+Logical volume management (LVM) is a form of storage virtualization that offers system administrators a more flexible approach to managing disk storage space than traditional partitioning. The goal of LVM is to facilitate managing the sometimes conflicting storage needs of multiple end users.
 
 .vdi
 
