@@ -22,7 +22,7 @@ Mais ROCKY:
 
 BUT VM:
 		- optimisation des ressources
-		- VM independante donc pas de pbs pr tester des apllications dans un environnement safe et securise.
+		- VM independante donc pas de pbs pr tester des applications dans un environnement safe et securise.
 		
 APT (advanced packaging tool) vs APTITUDE:
 		- fonctionnalites basiques equivalentes mais
